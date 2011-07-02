@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libXML
+Version: 2.7.7
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2

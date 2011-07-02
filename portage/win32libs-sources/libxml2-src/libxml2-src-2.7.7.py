@@ -30,14 +30,13 @@ class Package(CMakePackageBase):
         CMakePackageBase.__init__( self )
         self.subinfo.options.package.packageName = 'libxml2'
         self.subinfo.options.configure.defines = "-DBUILD_tests=OFF"
+        
+    def install(self):
+        if not CMakePackageBase.install( self ):
+            return False
+        utils.copyFile(os.path.join(self.packageDir(),"libxml-2.0.pc") , os.path.join(self.imageDir(),"lib","pkgconfig","libxml-2.0.pc"))
+        return True
 
-
-    def createPackage( self ):
-        libName="libxml2"
-        self.stripLibs( libName )
-        # auto-create both import libs with the help of pexports
-        self.createImportLibs( libName )
-        return CMakePackageBase.createPackage( self )
 
 if __name__ == '__main__':
     Package().execute()

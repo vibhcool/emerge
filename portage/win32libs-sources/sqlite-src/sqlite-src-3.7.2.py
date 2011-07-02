@@ -34,6 +34,13 @@ class Package(CMakePackageBase):
         os.environ["TARGET_INCLUDE"] = wcecompatincdir + ";" + os.getenv("TARGET_INCLUDE")
 
     return CMakePackageBase.make( self )
-
+    
+  def install(self):
+    if not CMakePackageBase.install( self ):
+        return False
+    utils.copyFile(os.path.join(self.packageDir(),"sqlite3.pc") , os.path.join(self.imageDir(),"lib","pkgconfig","sqlite3.pc"))
+    return True
+    
+    
 if __name__ == '__main__':
     Package().execute()

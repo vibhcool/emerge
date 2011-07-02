@@ -42,6 +42,8 @@ class MSysShell(object):
 
         #prepare path to sue autotools
         utils.putenv("PATH", "%s;%s" %  ( os.environ.get( "PATH" ), os.path.join( os.environ.get( "MSYSDIR" ), "opt", "autotools", "bin" )))
+        
+        utils.putenv("PKG_CONFIG_PATH", os.path.join( os.environ.get( "KDEROOT" ) , "lib" , "pkgconfig" ))
 
 
     def toNativePath( self, path ):

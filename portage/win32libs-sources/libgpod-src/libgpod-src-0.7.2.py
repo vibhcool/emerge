@@ -13,31 +13,26 @@ class subinfo(info.infoclass):
         self.dependencies['dev-util/intltool'] = 'default'
 
     def setTargets( self ):
-        self.targets['0.7.2'] = 'http://kent.dl.sourceforge.net/project/gtkpod/libgpod/libgpod-0.7.2/libgpod-0.7.2.tar.gz'
-        self.targetInstSrc['0.7.2'] = "libgpod-0.7.2"
+        for ver in ['0.7.2','0.8.0']:
+            self.targets[ver] = 'http://downloads.sourceforge.net/sourceforge/gtkpod/libgpod-%s.tar.gz' % ver
+            self.targetInstSrc[ver] = 'libgpod-%s' % ver
         self.patchToApply['0.7.2'] = ("libgpod-0.7.2.diff", 1)
+        
+        self.targetDigests['0.8.0'] = 'ddef7f3583535242b4928b300eb8aa6bc9a0e6dc'
 
-        self.targets['0.7.90'] = 'http://www.gnome.org/~teuf/libgpod-0.7.90GIT.tar.gz'
-        self.targetInstSrc['0.7.90'] = "libgpod-0.7.90GIT"
 
         self.options.package.withCompiler = False
         self.shortDescription = "a library to access the contents of an iPod"
-        self.defaultTarget = '0.7.2'
+        self.defaultTarget = '0.8.0'
 
-from Package.PackageBase import *
-from Source.MultiSource import *
-from BuildSystem.AutoToolsBuildSystem import *
-from Packager.KDEWinPackager import *;
+from Package.AutoToolsPackageBase import *
 
-class Package( PackageBase, MultiSource, AutoToolsBuildSystem, KDEWinPackager):
-    def __init__( self ):
+class Package(AutoToolsPackageBase):
+    def __init__( self, **args ):
         self.subinfo = subinfo()
-        PackageBase.__init__(self)
-        MultiSource.__init__(self)
-        AutoToolsBuildSystem.__init__(self)
-        KDEWinPackager.__init__(self)
-        self.subinfo.options.configure.defines = """--with-python=no --disable-static LIBXML_CFLAGS=-I""" + \
-        MSysShell().toNativePath( os.path.join( self.rootdir, "include", "libxml" ) ) + """ LIBXML_LIBS=-lxml2"""
-
+        AutoToolsPackageBase.__init__(self)
+        self.subinfo.options.package.withCompiler = False
+        self.subinfo.options.configure.defines = """--with-python=no --disable-static """
+        
 if __name__ == '__main__':
      Package().execute()
