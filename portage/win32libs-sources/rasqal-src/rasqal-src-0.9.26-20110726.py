@@ -21,6 +21,8 @@ class subinfo(info.infoclass):
         self.dependencies['win32libs-bin/libxml2'] = 'default'
         self.dependencies['win32libs-bin/libxslt'] = 'default'
         self.dependencies['win32libs-bin/raptor2'] = 'default'
+        if compiler.isMinGW():
+            self.buildDependencies['win32libs-bin/libgmp'] = 'default'
         self.buildDependencies['virtual/base'] = 'default'
 
     def setBuildOptions( self ):
