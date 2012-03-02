@@ -3,7 +3,7 @@
 #
 
 import utils
-from CollectionPackagerBase import *
+from .CollectionPackagerBase import *
 
 class PortablePackagerList( PackagerLists ):
     """ dummy name for PackagerLists """
@@ -58,10 +58,10 @@ Packager for portal 7zip archives
 
     def createPackage( self ):
         """ create a package """
-        print "packaging using the PortablePackager"
+        print("packaging using the PortablePackager")
         
         self.internalCreatePackage()
 
         self.createPortablePackage()
-        utils.createDigestFile( self.defines[ "setupname" ])
+        utils.createDigetFile( self.defines[ "setupname" ])
         return True
