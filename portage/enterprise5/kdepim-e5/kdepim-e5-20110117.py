@@ -14,7 +14,7 @@ class subinfo(info.infoclass):
                 if fname.endswith(".patch") or fname.endswith( ".diff" ):
                     brandingPatches.append( (
                         os.path.join(brandingDir, fname), 1 ) )
-            for target in self.svnTargets.iterkeys():
+            for target in self.svnTargets:
                 if self.patchToApply.get(target):
                     self.patchToApply[target] += brandingPatches
                 else:
