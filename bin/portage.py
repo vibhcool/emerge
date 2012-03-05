@@ -744,7 +744,7 @@ def isInstalled( category, package, version, buildtype='' ):
     if os.path.isfile( fileName ):
         with open( fileName, "rb" ) as f:
             for line in f.read().splitlines():
-                (_category, _packageVersion) = line.split( "/" )
+                (_category, _packageVersion) = str(line).split( "/" )
                 (_package, _version) = utils.packageSplit(_packageVersion)
                 if category != '' and version != '' and category == _category and package == _package and version == _version:
                     found = True
@@ -833,7 +833,7 @@ def addInstalled( category, package, version, buildtype='' ):
                     utils.die( "Already installed, this should not happen" )
     with open( os.path.join( path, fileName ), "ab" ) as f:
         f.write( bytes( "%s/%s-%s\r\n" % ( category, package, version ),
-                        "UTF-8" )
+                        "UTF-8" ) )
 
 def remInstalled( category, package, version, buildtype='' ):
     """ deprecated, use InstallDB.installdb.remInstalled() instead """
