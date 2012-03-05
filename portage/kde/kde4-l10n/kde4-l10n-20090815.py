@@ -143,7 +143,7 @@ class MainPackage( CMakePackageBase ):
         ( command, option ) = self.getAction()
         self.errors = dict()
         ## \todo does not work yet see note in PackageBase::getAction()
-#        if option <> None:
+#        if option != None:
 #            languages = option.split()
 #        else:
 

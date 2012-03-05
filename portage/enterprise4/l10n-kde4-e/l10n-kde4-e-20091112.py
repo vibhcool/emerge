@@ -100,7 +100,7 @@ class MainPackage(PackageBase):
         (command, option) = self.getAction()
         self.errors = dict()
         ## \todo does not work yet see note in PackageBase::getAction()
-        if option <> None:
+        if option != None:
             languages = option.split()
         else:
             languages = self.subinfo.languages.split()
@@ -108,7 +108,7 @@ class MainPackage(PackageBase):
 
         for language in languages:
             if not found and self.startLanguage:
-                if self.startLanguage <> language:
+                if self.startLanguage != language:
                     continue
                 else:
                     found = True
