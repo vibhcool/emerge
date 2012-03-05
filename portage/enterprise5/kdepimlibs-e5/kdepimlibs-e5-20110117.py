@@ -63,8 +63,8 @@ class subinfo(info.infoclass):
         self.hardDependencies['win32libs-sources/cyrus-sasl-src'] = 'default'
         self.hardDependencies['win32libs-sources/boost-src'] = 'default'
         self.hardDependencies['win32libs-sources/libical-src'] = 'default'
-        self.hardDependencies['contributed/gpg4win-dev'] = 'default'
-        self.dependencies['win32libs-bin/openldap'] = 'default'
+        self.hardDependencies['enterprise5/gpg4win-e5'] = 'default'
+        self.hardDependencies['testing/openldap-src'] = 'default'
 #        if compiler.isMinGW():
 #            self.hardDependencies['testing/openldap-src'] = 'default'
 
