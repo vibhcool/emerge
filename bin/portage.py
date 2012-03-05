@@ -830,10 +830,9 @@ def addInstalled( category, package, version, buildtype='' ):
                     utils.warning( "version already installed" )
                     return
                 elif line.startswith( "%s/%s-" % ( category, package ) ):
-                    utils.die( "Already installed, this should not happen" )
+                    utils.die( "already installed, this should no happen" )
     with open( os.path.join( path, fileName ), "ab" ) as f:
-        f.write( bytes( "%s/%s-%s\r\n" % ( category, package, version ),
-                        "UTF-8" )
+        f.write( "%s/%s-%s\r\n" % ( category, package, version ) )
 
 def remInstalled( category, package, version, buildtype='' ):
     """ deprecated, use InstallDB.installdb.remInstalled() instead """
