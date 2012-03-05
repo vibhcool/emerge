@@ -135,7 +135,7 @@ class MainPackage(PackageBase):
             if not self.kde4_l10n.runAction(command):
                 self.errors["%s-%s" % (language, command)] = 1
 
-        print self.errors
+        print (self.errors)
         return True
 
 if __name__ == '__main__':
