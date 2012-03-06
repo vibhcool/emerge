@@ -1,5 +1,5 @@
 import sys
-import base
+
 import info
 
 class subinfo(info.infoclass):
