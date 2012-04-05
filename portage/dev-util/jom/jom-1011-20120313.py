@@ -25,7 +25,7 @@ class subinfo(info.infoclass):
         self.targetDigests['1_0_11'] = '089a6cc6a0366d480731be2d5cb608f7a54b8104'
         self.targets['1_0_1-patched'] = 'http://www.winkde.org/pub/kde/ports/win32/repository/other/jom101-patched.7z'
         self.targetDigests['1_0_1-patched'] = '5f878e50cdd05f390b2737d4050a740edd48337f'
-        self.defaultTarget = '1_0_11'
+        self.defaultTarget = '1_0_9'
 
     def setBuildOptions( self ):
         self.disableHostBuild = False
