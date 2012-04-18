@@ -2,7 +2,7 @@
   "epc": {
     "buildtime-dependencies": [
       "dev-util/cmake", 
-      "kde/kdelibs", 
+      "enterprise5/kdelibs-e5", 
       "dev-util/gettext-tools"
     ], 
     "default-target": "4.8.2", 
