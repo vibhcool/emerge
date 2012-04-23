@@ -12,7 +12,8 @@ class subinfo(info.infoclass):
 
     def setTargets( self ):
         self.targets['4.4.4'] = 'http://download.kde.org/download.php?url=stable/phonon/4.4.4/src/phonon-4.4.4.tar.bz2'
-        self.targets['4.5.0'] = 'http://download.kde.org/download.php?url=stable/phonon/4.5.0/src/phonon-4.5.0.tar.bz2'
+        self.targets['4.5.0'] = 'http://download.kde.org/stable/phonon/4.5.0/src/phonon-4.5.0.tar.bz2'
+        self.targetDigests['4.5.0'] = "122f7c53939a2c40c3312c2f5e59f25ca2c9ee53"
         self.targetInstSrc['4.4.4'] = 'phonon-4.4.4'
         self.targetInstSrc['4.5.0'] = 'phonon-4.5.0'
         self.patchToApply['4.4.4'] = ("phonon-20100915.diff", 1)
@@ -41,7 +42,7 @@ class subinfo(info.infoclass):
         self.svnTargets['20100401'] = 'tags/kdepim/enterprise5.0.20100401.1110042/kdesupport/phonon'
         self.svnTargets['20100409'] = 'tags/kdepim/enterprise5.0.20100409.1112952/kdesupport/phonon'
         self.svnTargets['20100507'] = 'tags/kdepim/enterprise5.0.20100507.1123982/kdesupport/phonon'
-        self.defaultTarget = '4.5.0'
+        self.defaultTarget = '4.6.0'
 
 from Package.CMakePackageBase import *
 
