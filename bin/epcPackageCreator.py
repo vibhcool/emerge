@@ -2,12 +2,14 @@ import json
 import sys
 import utils
 import os
+import re
 from time import strftime
 
 class EpcPackageCreator(object):
     def __init__( self , epcFile ):
         self.epcFile = epcFile        
         self.kderoot = os.getenv("KDEROOT")
+        self.epcVariables = re.compile("\$\{.*\}")
         self.epcDict = dict()
         self.variables = dict()
         self.subinfoTemlate = ""
@@ -21,6 +23,7 @@ class EpcPackageCreator(object):
         self.suffix = ""
         self.portageDir = ""
         self.description = ""
+        self.homepage = ""
         
 
 
@@ -42,6 +45,7 @@ class EpcPackageCreator(object):
         self.suffix = self._get("suffix",self.suffix )
         self.portageDir = self._get("portage-dir",self.portageDir)
         self.description = self._get("description",self.description)
+        self.homepage = self._get("homepage",self.homepage)
 
     def _get(self,key,target,srcDict = None):
         if srcDict == None:
@@ -93,6 +97,12 @@ class EpcPackageCreator(object):
             return ""
         return "\n        self.shortDescription = '%s'\n" % text
         
+    def _getHomepage(self,package):
+        text = self._get("homepage",self.homepage,package)
+        if text == "":
+            return ""
+        return "\n        self.homepage = '%s'\n" % text
+        
         
     def generateSubModule(self):
         for package in self.packages:
@@ -100,6 +110,7 @@ class EpcPackageCreator(object):
             text += "\n"
             text += self._getDigests(package)
             text += self._getPatches(package)
+            text += self._getHomepage(package)
             text += self._getDescription(package)
             text += self._getDependencies(package)
 
@@ -109,12 +120,14 @@ class EpcPackageCreator(object):
             text += self._get("package-template",self.packageTemplate,package)
             text +=  self._getPpackageText()
             
-            for key in package.keys():
-                text = text.replace("${EPC_PACKAGE-%s}" % key.upper(), str(package[key]))
-            for key in self.epcDict.keys():
-                text = text.replace("${EPC_%s}" % key.upper(), str(self.epcDict[key]))
-            for key in self.variables.keys():
-                text = text.replace("${%s}" % variables.uppercase() , str(self.epcDict[variables]))
+            for key in self.epcVariables.findall(text):
+                if key.startswith("${EPC_PACKAGE"):
+                    text = text.replace(key, str(package[key[14:-1].lower()]))
+                    continue
+                if key.startswith("${EPC_"):
+                    text = text.replace(key, str(self.epcDict[key[6:-1].lower()]))
+                    continue
+                text = text.replace(key, str(self.variables[key.lower()]))
 
             outName = package["name"]
             if self.prefix != "":
@@ -128,7 +141,10 @@ class EpcPackageCreator(object):
 
 
     def generateBaseModule(self):
-        text = "import info\n\nclass subinfo(info.infoclass):\n    def setTargets( self ):\n        self.svnTargets['%s'] = ''\n        self.defaultTarget = '%s'\n\n    def setDependencies( self ):\n" % (self.default_target ,self.default_target )
+        text = "import info\n\nclass subinfo(info.infoclass):\n    def setTargets( self ):\n        self.svnTargets['%s'] = ''\n        self.defaultTarget = '%s'\n" % (self.default_target ,self.default_target )
+        text += self._getHomepage(self.epcDict)
+        text += self._getDescription(self.epcDict)
+        text += "\n    def setDependencies( self ):\n"
         pName,module = self.portageDir.split("/")
         for package in self.packages:
             if self.prefix != "":
@@ -162,6 +178,7 @@ class EpcPackageCreator(object):
         return "\n\n\nif __name__ == '__main__':\n    Package().execute()\n"
 
 if __name__ == '__main__':
+    utils.startTimer("EPC")
     if len( sys.argv ) < 2:
         utils.die("")
 
@@ -171,3 +188,4 @@ if __name__ == '__main__':
     #print(epc.__dict__)
     epc.generateSubModule()
     epc.generateBaseModule()
+    utils.stopTimer("EPC")
