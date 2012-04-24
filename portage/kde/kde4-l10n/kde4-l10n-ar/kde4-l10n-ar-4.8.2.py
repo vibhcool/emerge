@@ -12,7 +12,7 @@ class subinfo( info.infoclass ):
 
     def setDependencies( self ):
         self.buildDependencies['dev-util/cmake'] = 'default'
-        self.buildDependencies['kde/kdelibs'] = 'default'
+        self.buildDependencies['enterprise5/kdelibs-e5'] = 'default'
         self.buildDependencies['dev-util/gettext-tools'] = 'default'
 
 
