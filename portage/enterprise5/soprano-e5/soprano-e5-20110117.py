@@ -9,6 +9,7 @@ class subinfo(info.infoclass):
         self.hardDependencies['libs/qt']               = 'default'
         self.hardDependencies['win32libs-sources/clucene-core-src'] = 'default'
         self.hardDependencies['win32libs-sources/librdf-src']   = 'default'
+        self.hardDependencies['enterprise5/kdewin-e5']   = 'default'
  #       self.hardDependencies['testing/virtuoso'] = 'default'
 
     def setTargets( self ):
@@ -78,6 +79,8 @@ class subinfo(info.infoclass):
         self.svnTargets['20101217'] = 'tags/kdepim/enterprise5.0.20101217.1207336/kdesupport/soprano'
         self.svnTargets['20110110'] = 'tags/kdepim/.20110110.enterprise5.0/kdesupport/soprano'
         self.svnTargets['20110117'] = 'tags/kdepim/.20110117.enterprise5.0/kdesupport/soprano'
+
+        self.patchToApply['gitHEAD'] = ('Use-KDE-Windows-compatibility-sockets.patch', 1)
         self.defaultTarget = 'gitHEAD'
 
 from Package.CMakePackageBase import *
