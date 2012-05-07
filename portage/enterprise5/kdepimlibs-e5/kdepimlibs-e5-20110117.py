@@ -55,6 +55,7 @@ class subinfo(info.infoclass):
         self.svnTargets['20101217'] = 'tags/kdepim/enterprise5.0.20101217.1207336/kdepimlibs'
         self.svnTargets['20110110'] = 'tags/kdepim/.20110110.enterprise5.0/kdepimlibs'
         self.svnTargets['20110117'] = 'tags/kdepim/.20110117.enterprise5.0/kdepimlibs'
+        self.patchToApply['4.8'] = [('fixfor-win2003server.diff', 1)]
         self.defaultTarget = '4.8'
 
     def setDependencies( self ):
