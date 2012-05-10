@@ -3,7 +3,7 @@ import info
 class subinfo(info.infoclass):
     def setTargets( self ):
         self.svnTargets['gitHEAD'] = '[git]kde:marble'
-        self.patchToApply[ 'gitHEAD' ] = [ ( "0001-first-version-of-flightgear-position-provider-plugin.patch_", 1 ) ]
+        self.patchToApply[ 'gitHEAD' ] = [("0004-listen-on-any-address-to-support-mapping-over-networ.patch_", 1)]
         self.shortDescription = 'the desktop globe'
         self.defaultTarget = 'gitHEAD'
 
