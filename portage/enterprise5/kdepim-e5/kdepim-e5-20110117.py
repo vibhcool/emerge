@@ -76,7 +76,8 @@ class subinfo(info.infoclass):
         self.svnTargets['20110117'] = 'tags/kdepim/.20110117.enterprise5.0/kdepim'
         self.defaultTarget = '4.8'
         self.patchToApply['4.8'] = [
-                ('add-full-shutdown-button.patch', 1)]
+                ('add-full-shutdown-button.patch', 1),
+                ('fix_introduction_screen.diff', 1)] # Upstream for 4.9
         # To platform/package specific for master
         self.apply_branding("EMERGE_KDEPIME5_BRANDING_PATCHES")
 
