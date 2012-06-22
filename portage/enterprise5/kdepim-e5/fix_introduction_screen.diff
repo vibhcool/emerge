@@ -1,5 +1,5 @@
 diff --git a/kontact/src/mainwindow.cpp b/kontact/src/mainwindow.cpp
-index 307073b..d687cd5 100644
+index 3336d5d..c8d7774 100644
 --- a/kontact/src/mainwindow.cpp
 +++ b/kontact/src/mainwindow.cpp
 @@ -382,12 +382,12 @@ void MainWindow::paintAboutScreen( const QString &msg )
@@ -40,5 +40,5 @@ index 307073b..d687cd5 100644
 -    subs( "file:" + wizard_icon_path ).
 +    subs( "file:/" + wizard_icon_path ).
      subs( "exec:/gwwizard" ).
-     subs( i18nc( "@item:intext", "Setup your Accounts" ) ).
-     subs( i18nc( "@item:intext", "Prepare Kontact for use" ) ).
+     subs( i18nc( "@item:intext", "Configure Kontact as Groupware Client" ) ).
+     subs( i18nc( "@item:intext", "Prepare Kontact for use in corporate networks" ) ).
