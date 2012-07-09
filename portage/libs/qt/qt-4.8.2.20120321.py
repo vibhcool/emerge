@@ -36,7 +36,7 @@ class subinfo(info.infoclass):
         self.svnTargets['4.7.1'] = "[git]kde:qt-kde|4.7.1-patched|"
         self.svnTargets['4.7.4'] = "[git]kde:qt|4.7-stable|v4.7.4"
         self.svnTargets['4.8.0'] = "[git]kde:qt|4.7-stable|v4.8.0"
-        self.svnTargets['4.8.1'] = "git://gitorious.org/qt/qt.git||v4.8.1"
+        self.svnTargets['4.8.2'] = "git://gitorious.org/qt/qt.git||v4.8.2"
         self.svnTargets['4.7'] = "git://gitorious.org/qt/qt.git|4.7|"
         self.svnTargets['wince'] = "git://gitorious.org/qt/qt.git|4.7|235d1d687dcc2d21860cd753c9d67964c5270be2"
         self.svnTargets['wince-4.7'] = self.svnTargets["4.7"]
@@ -73,10 +73,17 @@ class subinfo(info.infoclass):
             ('patches/4.8/fix-debug-webkit-linkage-QTBUG-20556.patch', 0),
             ('patches/4.8.1/Use-windows-path-for-pkgconfig-mkdir_p_asstring.patch', 1)
         ]
+        self.patchToApply['4.8.2'] = [
+            ('patches/4.7/out-of-source-build.patch', 1),
+            ('patches/4.8/add-pdbs-on-msvc.diff', 1),
+            ('patches/4.8/detect-windows-8-as-windows-7.patch', 1),
+            ('patches/4.8/fix-debug-webkit-linkage-QTBUG-20556.patch', 0),
+            ('patches/4.8.1/Use-windows-path-for-pkgconfig-mkdir_p_asstring.patch', 1)
+        ]
 
         self.shortDescription = "a cross-platform application framework"
         # If you change the default target here please do not forget to rename the portage file
-        self.defaultTarget = '4.8.1'
+        self.defaultTarget = '4.8.2'
 
         ## \todo this is prelimary  and may be changed
         self.options.package.packageName = 'qt'

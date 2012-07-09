@@ -1,17 +1,17 @@
 import info
 
-class subinfo( info.infoclass ):
+class subinfo(info.infoclass):
     def setTargets( self ):
-        self.svnTargets['gitHEAD'] = '[git]kde:libkdcraw'
-        self.shortDescription = "libkdcraw is a C++ interface around LibRaw library used to decode RAW picture files."
+        self.svnTargets['gitHEAD'] = '[git]kde:pairs'
+        self.shortDescription = 'A memory and pairs game for KDE'
         self.defaultTarget = 'gitHEAD'
 
     def setDependencies( self ):
-        self.dependencies['kde/kdelibs'] = 'default'
+        self.dependencies['kde/kde-runtime'] = 'default'
 
 from Package.CMakePackageBase import *
 
-class Package( CMakePackageBase ):
+class Package(CMakePackageBase):
     def __init__( self ):
         self.subinfo = subinfo()
         CMakePackageBase.__init__( self )
