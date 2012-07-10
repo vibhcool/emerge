@@ -402,8 +402,9 @@ FunctionEnd
 
 Section "un."
   DetailPrint "Beende Prozesse"
-  ExecDos::exec '"$SYSDIR\cmd.exe" /C "$INSTDIR\bin\killkde.bat"' ""
-  
+  ${StrRep} '$0' '$INSTDIR' '\' '\\'
+  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$0$\") terminate 0"' ""
+
   ; Unregister Virtuoso
   ExecWait 'regsvr32.exe /u /s "$INSTDIR\lib\virtodbc.dll"'
 
