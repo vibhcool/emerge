@@ -402,8 +402,9 @@ FunctionEnd
 
 Section "un."
   DetailPrint "Beende Prozesse"
-  ${StrRep} '$0' '$INSTDIR' '\' '\\'
-  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$0$\") terminate 0"' ""
+  ${UnStrRep} '$0' '$INSTDIR' '\' '\\'
+  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$0%$\") terminate 0"' "" "$TEMP\kontact_termination.log"
+  sleep 3000
 
   ; Unregister Virtuoso
   ExecWait 'regsvr32.exe /u /s "$INSTDIR\lib\virtodbc.dll"'
