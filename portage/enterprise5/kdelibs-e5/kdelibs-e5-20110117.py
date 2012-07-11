@@ -16,7 +16,6 @@ class subinfo(info.infoclass):
                                     ( 'add_portable_lt_to_st.diff', 1 ),
                                     ]
         self.patchToApply['4.7'] = [( 'add_portable_lt_to_st.diff', 1)]
-        self.patchToApply['4.8'] = [( 'dtd_path_fix.diff', 1)]
         self.svnTargets['20091111'] = 'tags/kdepim/pe5.20091111/kdelibs'
         self.svnTargets['20091123'] = 'tags/kdepim/pe5.20091123/kdelibs'
         self.svnTargets['20091201'] = 'tags/kdepim/pe5.20091201/kdelibs'
