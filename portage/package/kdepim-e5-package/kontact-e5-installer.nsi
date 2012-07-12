@@ -403,7 +403,9 @@ FunctionEnd
 Section "un."
   DetailPrint "Beende Prozesse"
   ${UnStrRep} '$0' '$INSTDIR' '\' '\\'
-  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$0%$\") terminate 0"' "" "$TEMP\kontact_termination.log"
+  ${UnStrRep} '$1' '$0' '(x86)' '%'
+  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$1%$\") terminate 0"' "" "$TEMP\kontact_termination.log"
+
   sleep 3000
 
   ; Unregister Virtuoso
@@ -506,7 +508,7 @@ FunctionEnd
 ;---------------------------
 # From Function CheckExistingVersion
 LangString T_AlreadyInstalled ${LANG_ENGLISH} \
-    " has already been installed.$\r$\nYou need to\
+    " has already been installed.$\r$\nYou need to \
     uninstall the other Version before continuing.$\r$\n\
     Start the Uninstall now?"
 LangString T_AlreadyInstalled ${LANG_GERMAN} \
