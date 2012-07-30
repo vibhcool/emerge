@@ -404,7 +404,7 @@ Section "un."
   DetailPrint "Beende Prozesse"
   ${UnStrRep} '$0' '$INSTDIR' '\' '\\'
   ${UnStrRep} '$1' '$0' '(x86)' '%'
-  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$1%$\") terminate 0"' "" "$TEMP\kontact_termination.log"
+  ExecDos::exec '"$SYSDIR\cmd.exe" /C "wmic process where (executablepath like $\"%$1\\bin%$\") terminate 0"' "" "$TEMP\kontact_termination.log"
 
   sleep 3000
 
