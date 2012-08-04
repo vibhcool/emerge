@@ -156,13 +156,7 @@ class Package(PackageBase, GitSource, QMakeBuildSystem, KDEWinPackager):
             self.dbus = portage.getPackageInstance('win32libs-sources', 'dbus-src')
         else:
             self.dbus = portage.getPackageInstance('win32libs-bin', 'dbus')
-<<<<<<< HEAD
         if emergePlatform.isCrossCompilingEnabled():
-=======
-        if not emergePlatform.isCrossCompilingEnabled():
-            self.mysql_server = portage.getPackageInstance('binary', 'mysql-pkg')
-        else:
->>>>>>> master
             self.wcecompat = portage.getPackageInstance('win32libs-sources', 'wcecompat-src')
 
     def configure( self, unused1=None, unused2=""):
