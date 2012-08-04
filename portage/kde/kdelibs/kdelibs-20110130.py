@@ -4,6 +4,8 @@ class subinfo(info.infoclass):
     def setTargets( self ):
         self.svnTargets['gitHEAD'] = '[git]kde:kdelibs'
         self.svnTargets['frameworks'] = '[git]kde:kdelibs|frameworks|'
+        for version in ['4.4', '4.5', '4.6', '4.7', '4.8', '4.9']:
+            self.svnTargets[version] = '[git]kde:kdelibs|KDE/%s|' % version
         self.shortDescription = "The KDE Library"
         self.defaultTarget = 'gitHEAD'
 
@@ -25,7 +27,7 @@ class subinfo(info.infoclass):
         self.dependencies['data/docbook-dtd'] = 'default'
         self.dependencies['data/docbook-xsl'] = 'default'
         self.dependencies['data/shared-desktop-ontologies'] = 'default'
-        self.runtimeDependencies['kdesupport/phonon-vlc'] = 'default'
+#        self.runtimeDependencies['kdesupport/phonon-vlc'] = 'default'
 
 from Package.CMakePackageBase import *
 
