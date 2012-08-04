@@ -13,7 +13,7 @@ class subinfo(info.infoclass):
         self.dependencies['win32libs-sources/cyrus-sasl-src'] = 'default'
         self.dependencies['win32libs-sources/boost-src'] = 'default'
         self.dependencies['win32libs-sources/libical-src'] = 'default'
-        self.dependencies['enterprise5/gpg4win-e5'] = 'default'
+        self.dependencies['binary/gpg4win-e5'] = 'default'
         self.dependencies['win32libs-bin/openldap'] = 'default'
         self.shortDescription = "the base libraries for PIM related services"
 
