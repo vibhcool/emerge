@@ -3,6 +3,8 @@ import info
 class subinfo( info.infoclass ):
     def setTargets( self ):
         self.svnTargets['gitHEAD'] = '[git]kde:kdepim-runtime'
+        for version in ['4.4', '4.5', '4.6', '4.7', '4.8', '4.9']:
+            self.svnTargets[version] = '[git]kde:kdepim-runtime|KDE/%s' % version
         self.defaultTarget = 'gitHEAD'
 
     def setDependencies( self ):
