@@ -3,6 +3,9 @@ import compiler
 class subinfo(info.infoclass):
     def setTargets( self ):
         self.svnTargets['gitHEAD'] = '[git]kde:kde-runtime'
+        for version in ['4.4', '4.5', '4.6', '4.7', '4.8', '4.9']:
+            self.svnTargets[version] = '[git]kde:kde-runtime|KDE/%s' % version
+            self.patchToApply[version] = [('Kwallet-Autoallow-access-for-every-application.patch', 1)]
         self.defaultTarget = 'gitHEAD'
 
     def setDependencies( self ):
