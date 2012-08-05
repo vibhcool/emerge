@@ -32,7 +32,7 @@ class subinfo( info.infoclass ):
         else:
             # 2.8.4 is broken when using short paths and
             # windres fails even in old projects like zlib
-            self.defaultTarget = 'v2.8.8'
+            self.defaultTarget = '2.8.3-2'
 
     def setBuildOptions( self ):
         self.disableHostBuild = False
