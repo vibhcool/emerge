@@ -20,7 +20,7 @@ class Package( CMakePackageBase ):
     def __init__( self ):
         self.subinfo = subinfo()
         CMakePackageBase.__init__( self )
-        self.subinfo.options.configure.defines += " -DKDEPIM_ENTERPRISE_BUILD=ON "
+        self.subinfo.options.configure.defines = " -DKDEPIM_ENTERPRISE_BUILD=ON "
         self.subinfo.options.configure.defines += " -DACCOUNTWIZARD_NO_GHNS=TRUE "
 
     def install( self ):
