@@ -7,6 +7,12 @@ import smtplib
 import urllib.request, urllib.parse, urllib.error
 import json
 
+# TODO: move multiple definitions to a common place
+COMPILER = os.getenv("EMERGE_COMPILER")
+if COMPILER == None:
+    # when using deprecated setting in active sessions
+    COMPILER = os.getenv("KDECOMPILER")
+
 class Notification(object):
     """ this class is the base class for notifications """
     def __init__( self, category, packageName, logfile, error=0 ):
@@ -49,7 +55,7 @@ class EmailNotification(Notification):
 
             # me == the sender's email address
             # you == the recipient's email address
-            subject = 'Build error in %s/%s on %s' % ( self.category, self.packageName, os.environ["KDECOMPILER"] )
+            subject = 'Build error in %s/%s on %s' % ( self.category, self.packageName, COMPILER )
             if revision:
                 subject += ' in revision %s' % revision.strip()
 

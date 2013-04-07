@@ -124,13 +124,13 @@ class infoclass(object):
         arch = self.getArchitecture();
         if compiler == None:
             compilerName = "msvc"
-            if os.getenv("KDECOMPILER") == "mingw":
+            if os.getenv("EMERGE_COMPILER") == "mingw":
                 compilerName = "mingw"
-            elif os.getenv("KDECOMPILER") == "mingw4":
+            elif os.getenv("EMERGE_COMPILER") == "mingw4":
                 compilerName = "mingw4"
-            elif os.getenv("KDECOMPILER") == "msvc2008":
+            elif os.getenv("EMERGE_COMPILER") == "msvc2008":
                 compilerName = "vc90"
-            elif os.getenv("KDECOMPILER") == "msvc2010":
+            elif os.getenv("EMERGE_COMPILER") == "msvc2010":
                 compilerName = "vc100"
         else:
             compilerName = compiler
@@ -176,13 +176,13 @@ example:
         if compiler.isMinGW_W32():
             arch = "-x86"
         compilerName = "msvc"
-        if os.getenv("KDECOMPILER") == "mingw":
+        if os.getenv("EMERGE_COMPILER") == "mingw":
             compilerName = "mingw"
-        elif os.getenv("KDECOMPILER") == "mingw4":
+        elif os.getenv("EMERGE_COMPILER") == "mingw4":
             compilerName = "mingw4"
-        elif os.getenv("KDECOMPILER") == "msvc2008":
+        elif os.getenv("EMERGE_COMPILER") == "msvc2008":
             compilerName = "vc90"
-        elif os.getenv("KDECOMPILER") == "msvc2010":
+        elif os.getenv("EMERGE_COMPILER") == "msvc2010":
             compilerName = "vc100"
         # TODO: use list comprehension
         ret = []

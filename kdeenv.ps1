@@ -158,14 +158,14 @@ subst "KDEGITDIR" $settings["Paths"]["KDEGITDIR"] $settings["ShortPath"]["EMERGE
 
 
 
-if ($settings["General"]["KDECOMPILER"] -eq "mingw4")
+if ($settings["General"]["EMERGE_COMPILER"] -eq "mingw4")
 { 
     path-mingw
     setupCCACHE
 }
 else
 {
-    if(([string]$settings["General"]["KDECOMPILER"]).StartsWith("msvc"))
+    if(([string]$settings["General"]["EMERGE_COMPILER"]).StartsWith("msvc"))
     {
         path-msvc
     }
@@ -190,7 +190,7 @@ $env:GIT_SSH="plink"
 
 
 Write-Host("KDEROOT     : ${env:KDEROOT}")
-Write-Host("KDECOMPILER : ${env:KDECOMPILER}")
+Write-Host("EMERGE_COMPILER : ${env:EMERGE_COMPILER}")
 Write-Host("KDESVNDIR   : ${env:KDESVNDIR}")
 Write-Host("KDEGITDIR   : ${env:KDEGITDIR}")
 Write-Host("PYTHONPATH  : " + $settings["Paths"]["PYTHONPATH"])

@@ -77,6 +77,10 @@ if "%EMERGE_PYTHON_PATH%" == "" (
     )
 )
 
+rem in case deprecated KDECOMPILER is used
+if "%EMERGE_COMPILER%" == "" (
+    set EMERGE_COMPILER=!KDECOMPILER!
+)
 rem handle drive substitution
 rem
 rem check for unversioned kdesettings.bat,
@@ -141,11 +145,11 @@ if NOT "%EMERGE_SETTINGS_VERSION%" == "" (
 rem print pathes 
 if NOT "%EMERGE_SETTINGS_VERSION%" == "" (
     echo KDEROOT     : %KDEROOT%
-    echo KDECOMPILER : %KDECOMPILER%
+    echo EMERGE_COMPILER : %EMERGE_COMPILER%
     echo KDESVNDIR   : %KDESVNDIR%
     echo KDEGITDIR   : %KDEGITDIR%
     echo DOWNLOADDIR : %DOWNLOADDIR%
-    title %KDEROOT% %KDECOMPILER%
+    title %KDEROOT% %EMERGE_COMPILER%
 )
 
 rem handle multiple merge roots
@@ -184,7 +188,7 @@ if NOT "!EMERGE_PYTHON_PATH!" == "" (
 )
 
 if "%EMERGE_USE_CCACHE%" == "True" (
-  if "%KDECOMPILER%" == "mingw4" (
+  if "%EMERGE_COMPILER%" == "mingw4" (
     echo EMERGE_USE_CCACHE is active to use it "set EMERGE_MAKE_PROGRAM=jom /E" or "set EMERGE_MAKE_PROGRAM=mingw32-make -e"
     set CCACHE_DIR=%KDEROOT%\build\CCACHE
     set CXX=ccache g++
@@ -196,10 +200,10 @@ if "%EMERGE_USE_CCACHE%" == "True" (
   )
 )
 
-if "%KDECOMPILER%" == "mingw" ( 
+if "%EMERGE_COMPILER%" == "mingw" ( 
     call :path-mingw
 ) else (
-    if "%KDECOMPILER%" == "mingw4" ( 
+    if "%EMERGE_COMPILER%" == "mingw4" ( 
         call :path-mingw
     ) else ( 
         if "%KDECOMPILER%" == "intel" (

@@ -16,7 +16,7 @@ rem * msvc2012 - use the Microsoft Visual C++ 2012 compiler
 rem * intel    - use the Intel C++ Compiler
 rem *            note: "intel" option depends on an MSVC environment,
 rem *                  please set the INTEL_VSSHELL var (vs2008, vs2010 or vs2012)
-set KDECOMPILER=mingw4
+set EMERGE_COMPILER=mingw4
 rem set INTEL_VSSHELL=vs2010
 
 rem Here you can set the architecure for which packages are build. 
@@ -136,10 +136,10 @@ rem ####### Visual Studio Settings #######
 
 rem Here you can adjust the path to your Visual Studio or Intel Composer installation if needed
 rem This is used to set up the build environment automatically
-if %KDECOMPILER% == msvc2008 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 9.0
-if %KDECOMPILER% == msvc2010 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 10.0
-if %KDECOMPILER% == msvc2012 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 11.0
-if %KDECOMPILER% == intel set INTELDIR=%PROGRAM_FILES%\Intel\Composer XE
+if %EMERGE_COMPILER% == msvc2008 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 9.0
+if %EMERGE_COMPILER% == msvc2010 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 10.0
+if %EMERGE_COMPILER% == msvc2012 set VSDIR=%PROGRAM_FILES%\Microsoft Visual Studio 11.0
+if %EMERGE_COMPILER% == intel set INTELDIR=%PROGRAM_FILES%\Intel\Composer XE
 
 rem Here you can adjust the path to the Windows Mobile SDK installation
 rem This is used to set up the cross-compilation environment automatically

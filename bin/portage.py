@@ -475,7 +475,7 @@ def findPossibleTargets( category, package, version, buildtype=''): # pylint: di
                     _target = '-'.join(particles[2:])
                 else:
                     return target
-                if _platform == os.getenv( "KDECOMPILER" ) and \
+                if _platform == os.getenv( "EMERGE_COMPILER" ) and \
                    _buildType == os.getenv( "EMERGE_BUILDTYPE" ):
                     return _target
     return target

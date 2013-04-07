@@ -202,7 +202,7 @@ class subinfo(info.infoclass):
         self.hardDependencies['gnuwin32/sed']        = 'default'
         self.hardDependencies['dev-util/cmake']      = 'default'
         self.hardDependencies['dev-util/subversion'] = 'default'
-        if os.getenv( "KDECOMPILER" ) == "mingw":
+        if os.getenv( "EMERGE_COMPILER" ) == "mingw":
           self.hardDependencies['dev-util/mingw']    = 'default'
 
 class Package(CMakePackageBase):

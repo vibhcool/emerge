@@ -19,7 +19,11 @@ import compiler
 
 
 ROOTDIR = os.getenv( "KDEROOT" )
-COMPILER = os.getenv( "KDECOMPILER" )
+# TODO: move multiple definitions to a common place
+COMPILER = os.getenv("EMERGE_COMPILER")
+if COMPILER == None:
+    # when using deprecated setting in active sessions
+    COMPILER = os.getenv("KDECOMPILER")
 DOWNLOADDIR = os.getenv( "DOWNLOADDIR" )
 if ( DOWNLOADDIR == None ):
     DOWNLOADDIR = os.path.join( ROOTDIR, "distfiles" )
@@ -112,7 +116,7 @@ class EmergeBase(object):
         elif COMPILER == "intel":
             self.__compiler = "intel"
         else:
-            print("emerge error: KDECOMPILER: '%s' not understood" % COMPILER, file=sys.stderr)
+            print("emerge error: EMERGE_COMPILER: '%s' not understood" % COMPILER, file=sys.stderr)
             exit( 1 )
         self.rootdir = ROOTDIR
         if self.subinfo:

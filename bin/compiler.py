@@ -9,7 +9,11 @@ import subprocess
 import emergePlatform
 import re
 
-COMPILER = os.getenv("KDECOMPILER")
+# TODO: move multiple definitions to a common place
+COMPILER = os.getenv("EMERGE_COMPILER")
+if COMPILER == None:
+    # when using deprecated setting in active sessions
+    COMPILER = os.getenv("KDECOMPILER")
 
 GCCTARGET = None
 MINGW_VERSION = None

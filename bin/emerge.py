@@ -291,7 +291,7 @@ def handlePackage( category, package, version, buildAction, opts ):
         print("%s-%s" % ( package, version ))
         success = True
     elif ( buildAction == "version-package" ):
-        print("%s-%s-%s" % ( package, os.getenv( "KDECOMPILER" ), version ))
+        print("%s-%s-%s" % ( package, COMPILER, version ))
         success = True
     elif ( buildAction == "print-installable" ):
         portage.printInstallables()
@@ -315,6 +315,11 @@ def handlePackage( category, package, version, buildAction, opts ):
 #
 # "main" action starts here
 #
+# TODO: move multiple definitions to a common place
+COMPILER = os.getenv("EMERGE_COMPILER")
+if COMPILER == None:
+    # when using deprecated setting in active sessions
+    COMPILER = os.getenv("KDECOMPILER")
 
 # TODO: all the rest should go into main(). But here I am not
 # sure - maybe some of those variables are actually MEANT to
