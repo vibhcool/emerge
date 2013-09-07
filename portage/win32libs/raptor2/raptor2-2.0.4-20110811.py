@@ -1,5 +1,6 @@
 import info
 import emergePlatform
+import compiler
 
 from Package.CMakePackageBase import *
 
@@ -13,6 +14,9 @@ class subinfo(info.infoclass):
                                        ]
         self.patchToApply[ '2.0.8' ] = [( 'raptor2-2.0.8-20130522.diff', 1 )
                                        ]
+        if compiler.isMSVC():
+            self.patchToApply[ '2.0.8' ].append(('dont-define-vsnprintf.diff', 1))
+
         self.targetDigests['2.0.4'] = '79e1289f480cb0fe75f49ec29d9f49189a8a58c2'
         self.targetDigests['2.0.8'] = '6caec62d28dbf5bc26e8de5a46101b52aabf94fd'
         self.shortDescription = "Resource Description Framework (RDF)"

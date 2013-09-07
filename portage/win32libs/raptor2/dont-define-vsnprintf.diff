@@ -1,0 +1,11 @@
+diff -Nru -x '*~' raptor2-2.0.8.orig/src/win32_raptor_config.h raptor2-2.0.8/src/win32_raptor_config.h
+--- raptor2-2.0.8.orig/src/win32_raptor_config.h	2013-09-05 03:15:00.353327400 -0300
++++ raptor2-2.0.8/src/win32_raptor_config.h	2013-09-05 03:14:53.512515200 -0300
+@@ -69,7 +69,6 @@
+ #define HAVE_STRICMP 1
+ 
+ /* MS names for these functions */
+-#define vsnprintf _vsnprintf
+ #define snprintf _snprintf
+ #define access _access
+ #define stricmp _stricmp
