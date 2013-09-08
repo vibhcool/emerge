@@ -27,8 +27,8 @@ class subinfo(info.infoclass):
         self.targets[ releaseTag ] = "http://download.videolan.org/pub/videolan/vlc/%s/win%s/vlc-%s-win%s.7z" % ( releaseTag ,self.vlcArch,releaseTag , self.vlcArch )
         self.targetInstSrc[ releaseTag ] = 'vlc-' + releaseTag
         self.targetDigestUrls[ releaseTag ] = "http://download.videolan.org/pub/videolan/vlc/%s/win%s/vlc-%s-win%s.7z.sha1" % ( releaseTag ,self.vlcArch,releaseTag , self.vlcArch )
-    for releaseTag in [ '2.0.2','2.0.5','2.0.6' ]:
-        self.patchToApply[ releaseTag ] = [("vlc-%s.diff" % (releaseTag),1)]
+    for releaseTag in [ '2.0.2','2.0.5','2.0.6','2.0.8' ]:
+        self.patchToApply[ releaseTag ] = [("replace-llu-with-ull.diff",1)]
     self.shortDescription = "an open-source multimedia framework"
     
     self.defaultTarget = '2.0.8'
