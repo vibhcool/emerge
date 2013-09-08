@@ -1,0 +1,38 @@
+Subject: Only use stdint.h if it's present.
+
+MSVC2008 is missing stdint.h and other C99 headers. win32_rasqal_config.h is
+already declaring typedefs for the needed integer types, but some source files
+still include stdint.h unconditionally. This patch makes them include stdint.h
+only if HAVE_STDINT_H is defined.
+
+Author: Nicolás Alvarez <nicolas.alvarez@gmail.com>
+Last-Update: 2013-09-07
+
+diff -Nru -x '*~' rasqal-0.9.30.orig/src/rasqal_digest_md5.c rasqal-0.9.30/src/rasqal_digest_md5.c
+--- rasqal-0.9.30.orig/src/rasqal_digest_md5.c	2012-02-10 20:41:11.000000000 -0300
++++ rasqal-0.9.30/src/rasqal_digest_md5.c	2013-09-07 21:38:29.652048800 -0300
+@@ -50,8 +50,10 @@
+ 
+ #include <stdio.h>
+ #include <string.h>
+-#include <stdint.h>
+ #include <stdarg.h>
++#ifdef HAVE_STDINT_H
++#include <stdint.h>
++#endif
+ 
+ #include "rasqal.h"
+ #include "rasqal_internal.h"
+diff -Nru -x '*~' rasqal-0.9.30.orig/src/rasqal_digest_sha1.c rasqal-0.9.30/src/rasqal_digest_sha1.c
+--- rasqal-0.9.30.orig/src/rasqal_digest_sha1.c	2012-02-16 02:54:24.000000000 -0300
++++ rasqal-0.9.30/src/rasqal_digest_sha1.c	2013-09-07 21:38:39.688466300 -0300
+@@ -93,7 +93,9 @@
+ #include <stdio.h>
+ #include <string.h>
+ #include <stdarg.h>
++#ifdef HAVE_STDINT_H
+ #include <stdint.h>
++#endif
+ 
+ #include "rasqal.h"
+ #include "rasqal_internal.h"

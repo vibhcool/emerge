@@ -14,7 +14,10 @@ class subinfo(info.infoclass):
         self.patchToApply[ '0.9.30' ] = [( 'rasqal-0.9.30-20130831.diff', 1 )]
         self.targetDigests['0.9.30'] = '8e104acd68fca9b3b97331746e08d53d07d2e20a'
         if compiler.isMSVC():
-            self.patchToApply[ '0.9.30' ].append(('dont-define-vsnprintf.diff', 1))
+            self.patchToApply[ '0.9.30' ].extend([
+                ('dont-define-vsnprintf.diff', 1),
+                ('only-use-stdint-if-present.diff', 1)
+            ])
 
         self.shortDescription = "Rasqal RDF Query Library - for executing RDF queries"
         self.defaultTarget = '0.9.30'
