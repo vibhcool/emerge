@@ -1,0 +1,23 @@
+Subject: Don't define vsnprintf.
+
+win32_rdf_config.h is defining vsnprintf to _vsnprintf,
+but VC2008's stdio.h then tries to declare both separately,
+and the macro makes it declare _vsnprintf twice instead,
+causing a build error.
+
+I haven't checked if this works on other compilers.
+
+Author: Nicolás Alvarez <nicolas.alvarez@gmail.com>
+Last-Update: 2013-09-07
+
+diff -Nru -x '*~' redland-1.0.16.orig/src/win32_rdf_config.h redland-1.0.16/src/win32_rdf_config.h
+--- redland-1.0.16.orig/src/win32_rdf_config.h	2013-09-07 22:25:07.825078600 -0300
++++ redland-1.0.16/src/win32_rdf_config.h	2013-09-07 22:24:07.156608600 -0300
+@@ -43,7 +43,6 @@
+ #define HAVE_STRICMP 1
+ 
+ /* MS names for these functions */
+-#define vsnprintf _vsnprintf
+ #define snprintf _snprintf
+ #define access _access
+ #define stricmp _stricmp

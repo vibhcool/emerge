@@ -12,6 +12,8 @@ class subinfo(info.infoclass):
         self.targetDigests['1.0.14'] = '2561bf73f00f88e39f5c7b3a9b78f8d4ce7da955'
         self.patchToApply[ '1.0.16' ] = [( 'redland-1.0.16-20130901.diff', 1 )]
         self.targetDigests['1.0.16'] = '0dc3d65bee6d580cae84ed261720b5b4e6b1f856'
+        if compiler.isMSVC():
+            self.patchToApply[ '1.0.16' ].append(('dont-define-vsnprintf.diff', 1))
 
         self.shortDescription = "Resource Description Framework (RDF)"
         self.defaultTarget = '1.0.16'
