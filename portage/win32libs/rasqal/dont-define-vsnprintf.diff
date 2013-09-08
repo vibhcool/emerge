@@ -1,0 +1,23 @@
+Subject: Don't define vsnprintf.
+
+win32_rasqal_config.h is defining vsnprintf to _vsnprintf,
+but VC2008's stdio.h then tries to declare both separately,
+and the macro makes it declare _vsnprintf twice instead,
+causing a build error.
+
+I haven't checked if this works on other compilers.
+
+Author: Nicolás Alvarez <nicolas.alvarez@gmail.com>
+Last-Update: 2013-09-07
+
+diff -Nru -x '*~' rasqal-0.9.30.orig/src/win32_rasqal_config.h.in rasqal-0.9.30/src/win32_rasqal_config.h.in
+--- rasqal-0.9.30.orig/src/win32_rasqal_config.h.in	2013-09-07 21:51:09.602188300 -0300
++++ rasqal-0.9.30/src/win32_rasqal_config.h.in	2013-09-07 21:51:05.717781400 -0300
+@@ -40,7 +40,6 @@
+ #define HAVE_STRICMP 1
+ 
+ /* MS names for these functions */
+-#define vsnprintf _vsnprintf
+ #define snprintf _snprintf
+ #define access _access
+ #define stricmp _stricmp
