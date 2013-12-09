@@ -1,0 +1,3 @@
+- replace kdeenv.bat by platform independent python script (kdeenv.py)
+- retrieve settings from kdesettings.ini (config.py)
+
