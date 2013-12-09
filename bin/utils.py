@@ -137,10 +137,12 @@ class LockFile(object):
 
 ### fetch functions
 
-#FIXME: get this from somewhere else:
-WGetExecutable = os.path.join( os.getenv( "KDEROOT" ), "bin", "wget.exe" )
-if not os.path.exists( WGetExecutable ):
-    WGetExecutable = os.path.join( os.getenv( "KDEROOT" ), "dev-utils", "bin", "wget.exe" )
+
+def getWGet():
+    #FIXME: get this from somewhere else:
+    WGetExecutable = os.path.join( os.getenv( "KDEROOT" ), "bin", "wget.exe" )
+    if not os.path.exists( WGetExecutable ):
+        WGetExecutable = os.path.join( os.getenv( "KDEROOT" ), "dev-utils", "bin", "wget.exe" )
 
 def test4application( appname):
     """check if the application specified by 'appname' is available"""
@@ -247,7 +249,7 @@ def getFile( url, destdir , filename='' ):
         return False
 
 
-    wgetpath = WGetExecutable
+    wgetpath = getWGet()
     if ( os.path.exists( wgetpath ) ):
         return wgetFile( url, destdir , filename )
 
@@ -267,7 +269,7 @@ def getFile( url, destdir , filename='' ):
 
 def wgetFile( url, destdir, filename=''):
     """download file with wget from 'url' into 'destdir', if filename is given to the file specified"""
-    compath = WGetExecutable
+    compath = getWGet()
     command = "%s --no-check-certificate -c -t 10" % compath
     if os.environ.get("EMERGE_NO_PASSIVE_FTP"):
         command += " --no-passive-ftp "
