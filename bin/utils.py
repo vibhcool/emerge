@@ -11,6 +11,7 @@ this file contains some helper functions for emerge
 import http.client
 import ftplib
 import urllib.parse
+import urllib.request
 import shutil
 import zipfile
 import tarfile
@@ -163,24 +164,15 @@ def getFile( url, destdir , filename='' ):
         error( "fetch: no url given" )
         return False
 
-
     wgetpath = WGetExecutable
     if ( os.path.exists( wgetpath ) ):
         return wgetFile( url, destdir , filename )
 
-    scheme, host, path, _, _, _ = urllib.parse.urlparse( url )
-
-
+    _, _, path, _, _, _ = urllib.parse.urlparse( url )
     filename = os.path.basename( path )
-    debug( "%s\n%s\n%s\n%s" % ( scheme, host, path, filename ) )
+    debug( "%s\n%s" % ( url, filename ) )
 
-    if ( scheme == "http" ):
-        return getHttpFile( host, path, destdir, filename )
-    elif ( scheme == "ftp" ):
-        return getFtpFile( host, path, destdir, filename )
-    else:
-        error( "getFile: protocol not understood" )
-        return False
+    return fetchFile( url, destdir, filename )
 
 def wgetFile( url, destdir, filename=''):
     """download file with wget from 'url' into 'destdir', if filename is given to the file specified"""
@@ -198,46 +190,21 @@ def wgetFile( url, destdir, filename=''):
     debug( "wget ret: %s" % ret, 2)
     return ret
 
-def getFtpFile( host, path, destdir, filename ):
-    """download file from a ftp host specified by 'host' and 'path' into 'destdir' using 'filename' as file name"""
-    # FIXME check return values here (implement useful error handling)...
-    debug( "FIXME getFtpFile called. %s %s" % ( host, path ), 1 )
 
-    ftp = ftplib.FTP( host )
-    ftp.login( "anonymous", "johndoe" )
-    with open( os.path.join( destdir, filename ), "wb" ) as outfile:
-        ftp.retrbinary( "RETR " + path, outfile.write )
-
-    return True
-
-def getHttpFile( host, path, destdir, filename ):
+def fetchFile( url, destdir, filename ):
     """download file from a http host specified by 'host' and 'path' into 'destdir' using 'filename' as file name"""
-    # FIXME check return values here (implement useful error handling)...
-    debug( "getHttpFile called. %s %s" % ( host, path ), 1 )
+    debug( "fetchFile called: %s" % url, 1 )
 
-    conn = http.client.HTTPConnection( host )
-    conn.request( "GET", path )
-    r1 = conn.getresponse()
-    debug( "status: %s; reason: %s" % ( str( r1.status ), str( r1.reason ) ) )
+    def dlProgress(count, blockSize, totalSize):
+        percent = int(count * blockSize * 100 / totalSize)
+        sys.stdout.write("%2d%%" % percent)
+        sys.stdout.write("\b\b\b")
+        sys.stdout.flush()
 
-    count = 0
-    while r1.status == 302:
-        if count > 10:
-            debug( "Redirect loop" )
-            return False
-        count += 1
-        _, host, path, _, _, _ = urllib.parse.urlparse( r1.getheader( "Location" ) )
-        debug( "Redirection: %s %s" % ( host, path ), 1 )
-        conn = http.client.HTTPConnection( host )
-        conn.request( "GET", path )
-        r1 = conn.getresponse()
-        debug( "status: %s; reason: %s" % ( str( r1.status ), str( r1.reason ) ) )
-
-
-    data = r1.read()
-
-    with open( os.path.join( destdir, filename ), "wb" ) as f:
-        f.write( data )
+    with urllib.request.urlretrieve(url, reporthook=dlProgress) as response:
+        data = response.read()
+        with open( os.path.join( destdir, filename ), "wb" ) as f:
+            f.write( data )
     return True
 
 def isCrEol(filename):
