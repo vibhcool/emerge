@@ -100,7 +100,7 @@ mkdir $Script:installRoot\download -Force | Out-Null
 
 TestAndFetchPython
 
-(new-object net.webclient).DownloadFile("https://raw.githubusercontent.com/KDE/emerge/master/setup/EmergeBootstrap.py", "$Script:installRoot\download\EmergeBootstrap.py")
+(new-object net.webclient).DownloadFile("https://raw.githubusercontent.com/vibhcool/emerge/EmergeBootstrap.py/setup/EmergeBootstrap.py", "$Script:installRoot\download\EmergeBootstrap.py")
 
 Start-Sleep -s 10
 & "$Script:python" "$Script:installRoot\download\EmergeBootstrap.py" "$Script:installRoot"
