@@ -49,5 +49,17 @@ if "%EMERGE_ARGS%" == "" (
     %comspec% /e:on /K "cd /D %KDEROOT%"
     goto :eof
 )
+echo "KDEROOT" %KDEROOT%
+echo "EMERGE_ARGS" %EMERGE_ARGS%
+echo "1" %1
+echo "2" %2
+echo "3" %3
+echo "4" %4
+echo "5" %5
+echo "6" %6
+echo "7" %7
+echo "8" %8
+echo "9" %9
+
 %comspec% /e:on /C %EMERGE_ARGS% %1 %2 %3 %4 %5 %6 %7 %8 %9
 

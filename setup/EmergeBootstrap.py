@@ -106,8 +106,9 @@ if __name__ == "__main__":
     for key, value in shortPath.items():
         boot.setSettignsValue(key, value)
     boot.writeSettings()
-    subprocess.call('python v:\kk\emerge\\bin\EmergeSetupHelper.py --setup --mode bat')
-    #subprocess.call("%s emerge git" % os.path.join(kdeRoot, "emerge", "kdeenv.bat"))
+    #subprocess.call('python v:\kk\emerge\\bin\EmergeSetupHelper.py --setup --mode bat')
+    subprocess.call("%s emerge git" % os.path.join(kdeRoot, "emerge", "kdeenv.bat"))
+    input('hey hey')
     os.chdir(kdeRoot)
     shutil.rmtree( os.path.join(kdeRoot, "emerge") )
     subprocess.check_call("%s clone kde:emerge %s" % (os.path.join(kdeRoot, "dev-utils", "bin", "git"), os.path.join(kdeRoot, "emerge")))

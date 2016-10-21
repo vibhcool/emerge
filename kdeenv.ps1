@@ -9,7 +9,7 @@
 #    to build and run kde programs
 #    based on kdeenv.bat
 
-cls
+#cls
 
 
 $EMERGE_ROOT=[System.IO.Path]::GetDirectoryName($myInvocation.MyCommand.Definition)
